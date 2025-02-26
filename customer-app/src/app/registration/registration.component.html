@@ -1,0 +1,74 @@
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h4>Customer Registration</h4>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+          
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" id="firstName" class="form-control" formControlName="firstName" />
+            <div class="text-danger" *ngIf="submitted && regControl['firstName'].errors">
+              <small *ngIf="regControl['firstName'].errors['required']">First Name is required.</small>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" id="lastName" class="form-control" formControlName="lastName" />
+            <div class="text-danger" *ngIf="submitted && regControl['lastName'].errors">
+              <small *ngIf="regControl['lastName'].errors['required']">Last Name is required.</small>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="dateOfBirth" class="form-label">Date of Birth</label>
+            <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth" />
+            <div class="text-danger" *ngIf="submitted && regControl['dateOfBirth'].errors">
+              <small *ngIf="regControl['dateOfBirth'].errors['required']">Date of Birth is required.</small>
+            </div>
+          </div>
+  
+          <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+            Register
+          </button>
+        </form>
+
+        <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-header bg-secondary text-white">
+      <h4>Registered Customers</h4>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customers; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ customer.firstName }}</td>
+            <td>{{ customer.lastName }}</td>
+            <td>{{ customer.dateOfBirth }}</td>
+          </tr>
+          <tr *ngIf="customers.length === 0">
+            <td colspan="4" class="text-center">No customers found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
