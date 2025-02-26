@@ -30,12 +30,15 @@ You can run the application using one of the following options:
 - **Instructions:**
   1. Ensure you have Java 17 or higher installed.
   2. Navigate to the `customer-registration` directory.
-  3. Run the application as a Spring Boot application using your preferred IDE or by executing:
-
+  3. To compile the code, run tests, package the application, and install the artifact into your local Maven repository
+     ```bash
+     mvn clean install
+     ```
+  4. Run the application as a Spring Boot application using your preferred IDE or by executing:
      ```bash
      ./mvnw spring-boot:run
      ```
-
+     
 #### Frontend Setup
 
 - **Application Name:** `customer-app`
